@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "678f07a5-8772-4013-b8dc-452a7c5eb646",
+		"name": "D3 API Chaining training",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post  1 for auth token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f770c14a-fd57-4511-8aa9-cedcc5400280",
+						"exec": [
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    console.log(\"Token value is \"+jsonData.args.token)    \r",
+							"    pm.globals.set(\"mytoken\",jsonData.args.token);\r",
+							"});\r",
+							"postman.setNextRequest (\"Post 2 for Chaining\")"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://postman-echo.com/post?token={{$guid}}",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"post"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{$guid}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post 2 for Chaining",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b98f45c2-ba11-491e-9c55-52e2c58fbced",
+						"exec": [
+							"console.log (\"Fetching token from previous request \"+pm.globals.get(\"mytoken\"));\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://postman-echo.com/post?token={{mytoken}}&status=Chaining example 123",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"post"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{mytoken}}"
+						},
+						{
+							"key": "status",
+							"value": "Chaining example 123"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

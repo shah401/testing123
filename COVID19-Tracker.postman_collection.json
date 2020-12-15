@@ -21,9 +21,16 @@
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
 				"url": {
 					"raw": "https://corona-virus-stats.herokuapp.com/api/v1/cases/general-stats",
 					"protocol": "https",
