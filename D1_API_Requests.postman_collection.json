@@ -7,6 +7,18 @@
 	"item": [
 		{
 			"name": "Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "db69536e-8e30-45d7-9e51-794aba385aea",
+						"exec": [
+							"pm.globals.get(\"variable_key\");"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
