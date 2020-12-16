@@ -50,6 +50,20 @@
 		},
 		{
 			"name": "Country stats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5a89a0e6-47b2-40a5-b485-cc773f7ca2b4",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
