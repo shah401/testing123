@@ -15,7 +15,8 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
-							"});"
+							"});\r",
+							"pm.globals.get(\"variable_key\");"
 						],
 						"type": "text/javascript"
 					}
@@ -32,12 +33,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://corona-virus-stats.herokuapp.com/api/v1/cases/general-stats",
-					"protocol": "https",
+					"raw": "{{web}}/api/v1/cases/general-stats",
 					"host": [
-						"corona-virus-stats",
-						"herokuapp",
-						"com"
+						"{{web}}"
 					],
 					"path": [
 						"api",
